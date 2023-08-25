@@ -1,0 +1,33 @@
+model:
+  name: Recce
+  num_classes: 1
+config:
+  lambda_1: 0.1
+  lambda_2: 0.1
+  distribute:
+    backend: nccl
+  optimizer:
+    name: adam
+    lr: 0.0002
+    weight_decay: 0.00001
+  scheduler:
+    name: StepLR
+    step_size: 6420
+    gamma: 0.5
+  resume: False 
+  resume_best: False
+  id: FF++_c23_NT
+  loss: binary_ce
+  metric: Acc
+  debug: False
+  device: "cuda:0"
+  ckpt: best_model_16692
+data:
+  train_batch_size: 28
+  val_batch_size: 28
+  test_batch_size: 28
+  name: FaceForensics      #CelebDF   WildDeepfake
+  file: "./config/dataset/faceforensics.yml"   #celeb_df.yml" faceforensics  wilddeepfake
+  train_branch: "train_cfg"
+  val_branch: "test_cfg"
+  test_branch: "test_cfg"
